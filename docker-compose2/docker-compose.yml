@@ -1,0 +1,38 @@
+# services:
+#   dev:
+#     build:
+#       context: docker/dev
+#       dockerfile: dockerfile
+#     # ports: add the services port
+#     # networks:  add the services network
+#     # depends_on: what services this service depends on
+#     volumes: # add the volume from the host to the container
+#       - ./app:/app
+#       - 
+
+services:
+  nginx:
+    build:
+      context: docker/nginx
+      dockerfile: dockerfile
+    ports:
+      - "8080:80"
+    volumes:
+    - ./app/frontend:/app/frontend
+
+  backend:
+    build:
+      context: docker/backend
+      dockerfile: dockerfile
+    volumes:
+    - ./app:/app
+
+  dev:
+    build:
+      context: docker/dev
+      dockerfile: Dockerfile
+    # ports: add the services port
+    # networks:  add the services network
+    # depends_on: what services this service depends on
+    volumes: # add the volume from the host to the container
+      - ./app:/app

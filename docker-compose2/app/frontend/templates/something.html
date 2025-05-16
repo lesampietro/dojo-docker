@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Nosso app s2</title>
+</head>
+
+<body>
+    <h1>Frontend</h1>
+    <button onclick="buscarMensagem()">Buscar mensagem do backend</button>
+    <p id="mensagem"></p>
+
+    <script>
+        function buscarMensagem() {
+            fetch('/mensagem')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('mensagem').innerText = data.mensagem;
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                });
+        }
+    </script>
+</body>
+
+</html>
+
